@@ -61,9 +61,7 @@
       background: linear-gradient(90deg, #3b82f6, #a855f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      display: inline-block;
-      min-width: 14ch;
-      text-align: left;
+      display: inline; /* Mudado de inline-block para inline */
     }
   </style>
 </head>
@@ -109,7 +107,10 @@
 
     <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
       Eu crio soluções com <br>
-      <span id="typewriter" class="gradient-text"></span><span class="cursor-blink">|</span>
+      <span class="inline-flex justify-center md:justify-start items-center">
+        <span id="typewriter" class="gradient-text"></span>
+        <span class="cursor-blink text-primary ml-1">|</span>
+      </span>
     </h1>
 
     <div class="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-medium">
@@ -248,12 +249,12 @@
 
     <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mt-10">
 
-      <a href="mailto:administrador@marcosthe.com.br"
+      <a href="mailto:contato.marcos20@gmail.com"
          class="px-8 py-4 bg-card border border-slate-700 rounded-xl hover:border-primary hover:text-primary transition">
         Email
       </a>
 
-      <a href="https://wa.me/5586999999999" target="_blank"
+      <a href="https://wa.me/5586981621489" target="_blank"
          class="px-8 py-4 bg-card border border-slate-700 rounded-xl hover:border-green-500 hover:text-green-400 transition">
         WhatsApp
       </a>
@@ -301,30 +302,27 @@
     if (!el) return;
   
     const currentWord = words[wordIndex];
-  
-    // DIGITANDO
+    
     if (!isDeleting) {
+      // Digitando
       el.textContent = currentWord.substring(0, charIndex + 1);
       charIndex++;
   
       if (charIndex === currentWord.length) {
         isDeleting = true;
-        setTimeout(typeEffect, 1500); // Pausa no final da palavra
+        setTimeout(typeEffect, 2000); // Pausa maior ao terminar de escrever
         return;
       }
-    }
-  
-    // APAGANDO
-    else {
-      // CORREÇÃO AQUI: Usa apenas o charIndex e decrementa depois
-      el.textContent = currentWord.substring(0, charIndex);
+    } else {
+      // Apagando
+      el.textContent = currentWord.substring(0, charIndex - 1);
       charIndex--;
   
-      if (charIndex < 0) { // CORREÇÃO: Verifica se zerou a palavra
+      if (charIndex <= 0) {
         isDeleting = false;
         charIndex = 0;
         wordIndex = (wordIndex + 1) % words.length;
-        setTimeout(typeEffect, 500); // Pausa antes de começar a próxima
+        setTimeout(typeEffect, 500); // Pausa antes de começar a próxima palavra
         return;
       }
     }
