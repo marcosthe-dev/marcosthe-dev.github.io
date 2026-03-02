@@ -61,7 +61,9 @@
       background: linear-gradient(90deg, #3b82f6, #a855f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      display: inline; /* Mudado de inline-block para inline */
+      display: inline-block;
+      /* REMOVE: min-width: 14ch; */
+      /* REMOVE: text-align: left; */
     }
   </style>
 </head>
@@ -107,9 +109,8 @@
 
     <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
       Eu crio soluções com <br>
-      <span class="inline-flex justify-center md:justify-start items-center">
-        <span id="typewriter" class="gradient-text"></span>
-        <span class="cursor-blink text-primary ml-1">|</span>
+      <span class="whitespace-nowrap">
+        <span id="typewriter" class="gradient-text"></span><span class="cursor-blink text-blue-400">|</span>
       </span>
     </h1>
 
@@ -313,18 +314,20 @@
         setTimeout(typeEffect, 2000); // Pausa maior ao terminar de escrever
         return;
       }
+      
+    // APAGANDO
     } else {
-      // Apagando
-      el.textContent = currentWord.substring(0, charIndex - 1);
-      charIndex--;
-  
-      if (charIndex <= 0) {
+      charIndex--; // decrementa ANTES de mostrar
+    
+      if (charIndex < 0) {
         isDeleting = false;
         charIndex = 0;
         wordIndex = (wordIndex + 1) % words.length;
-        setTimeout(typeEffect, 500); // Pausa antes de começar a próxima palavra
+        setTimeout(typeEffect, 500);
         return;
       }
+    
+      el.textContent = currentWord.substring(0, charIndex);
     }
   
     const speed = isDeleting ? 50 : 100;
