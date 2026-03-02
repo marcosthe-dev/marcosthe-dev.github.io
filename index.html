@@ -56,6 +56,15 @@
     @keyframes blink {
       50% { opacity: 0; }
     }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #3b82f6, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      min-width: 14ch;
+      text-align: left;
+    }
   </style>
 </head>
 
@@ -100,7 +109,7 @@
 
     <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
       Eu crio soluções com <br>
-      <span class="text-primary" id="typewriter"></span><span class="cursor-blink">|</span>
+      <span id="typewriter" class="gradient-text"></span><span class="cursor-blink">|</span>
     </h1>
 
     <div class="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-medium">
