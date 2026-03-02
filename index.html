@@ -309,19 +309,23 @@
   
       if (charIndex === currentWord.length) {
         isDeleting = true;
-        setTimeout(typeEffect, 1500);
+        setTimeout(typeEffect, 1500); // Pausa no final da palavra
         return;
       }
     }
   
     // APAGANDO
     else {
-      el.textContent = currentWord.substring(0, charIndex - 1);
+      // CORREÇÃO AQUI: Usa apenas o charIndex e decrementa depois
+      el.textContent = currentWord.substring(0, charIndex);
       charIndex--;
   
-      if (charIndex === 0) {
+      if (charIndex < 0) { // CORREÇÃO: Verifica se zerou a palavra
         isDeleting = false;
+        charIndex = 0;
         wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(typeEffect, 500); // Pausa antes de começar a próxima
+        return;
       }
     }
   
