@@ -58,14 +58,12 @@
     }
     
     .cursor-blink {
-      animation: blink 1s step-end infinite;
-      display: inline-block;
-      font-weight: 300; /* Deixa o cursor mais elegante, combinando com o Inter */
-      color: #3b82f6;
+      animation: blink 1s infinite;
     }
     
     @keyframes blink {
-      50% { opacity: 0; }
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
     }
   </style>
 </head>
