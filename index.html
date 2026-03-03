@@ -61,9 +61,9 @@
       background: linear-gradient(90deg, #3b82f6, #a855f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      display: inline-block;
-      padding-bottom: 0.1em;  /* ← adicione isso */
-      line-height: 1.2;        /* ← e isso */
+      display: inline-block; /* Necessário para aceitar min-height */
+      min-height: 1.2em;      /* Garante que a altura de 1 linha seja preservada */
+      vertical-align: bottom; /* Mantém o alinhamento com o texto ao lado */
     }
   </style>
 </head>
@@ -109,8 +109,8 @@
 
     <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
       Eu crio soluções com <br>
-      <span class="whitespace-nowrap">
-        <span id="typewriter" class="gradient-text"></span><span class="cursor-blink text-blue-400">|</span>
+      <span class="inline-block min-h-[1.2em]"> <span id="typewriter" class="gradient-text"></span>
+        <span class="cursor-blink text-primary">|</span>
       </span>
     </h1>
 
