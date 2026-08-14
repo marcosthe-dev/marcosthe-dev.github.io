@@ -1,0 +1,2162 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>MarcosTHE.dev | Engenheiro de Software</title>
+
+  <meta
+    name="description"
+    content="Portfólio de MarcosTHE.dev — Engenharia de Software, Engenharia de Dados, APIs, Inteligência Artificial, sistemas fiscais e integrações corporativas."
+  >
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "sans-serif"]
+          },
+
+          colors: {
+            primary: "#3b82f6",
+            dark: "#0f172a",
+            card: "#1e293b"
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #0f172a;
+
+      background-image:
+        radial-gradient(
+          at 0% 0%,
+          rgba(59, 130, 246, 0.12),
+          transparent 50%
+        ),
+        radial-gradient(
+          at 100% 100%,
+          rgba(139, 92, 246, 0.12),
+          transparent 50%
+        );
+
+      background-attachment: fixed;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        90deg,
+        #3b82f6,
+        #8b5cf6,
+        #a855f7
+      );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+    }
+
+    .fade-in-up {
+      animation:
+        fadeInUp
+        0.6s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        forwards;
+
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cursor-blink {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%,
+      50%,
+      100% {
+        opacity: 1;
+      }
+
+      25%,
+      75% {
+        opacity: 0;
+      }
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(59, 130, 246, 0.07),
+          transparent 38%
+        );
+
+      pointer-events: none;
+    }
+
+    .project-card:hover::before {
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(59, 130, 246, 0.13),
+          transparent 45%
+        );
+    }
+
+    .filter-button.active {
+      color: #ffffff;
+      background-color: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+
+<body
+  class="
+    text-slate-300
+    antialiased
+    selection:bg-primary
+    selection:text-white
+  "
+>
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav
+  id="navbar"
+  class="
+    fixed
+    top-0
+    z-50
+    w-full
+    transition-all
+    duration-300
+  "
+>
+  <div
+    id="navbar-container"
+    class="
+      max-w-6xl
+      mx-auto
+      px-6
+      h-20
+      flex
+      items-center
+      justify-between
+      transition-all
+      duration-300
+    "
+  >
+
+    <!-- Logo -->
+    <a
+      href="#home"
+      class="
+        text-xl
+        sm:text-2xl
+        font-bold
+        text-white
+        tracking-tight
+      "
+    >
+      MarcosTHE<span class="text-primary">.dev</span>
+    </a>
+
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center space-x-1">
+
+      <a
+        href="#home"
+        class="nav-link"
+      >
+        Início
+      </a>
+
+      <a
+        href="#sobre"
+        class="nav-link"
+      >
+        Sobre
+      </a>
+
+      <a
+        href="#skills"
+        class="nav-link"
+      >
+        Habilidades
+      </a>
+
+      <a
+        href="#projetos"
+        class="nav-link"
+      >
+        Projetos
+      </a>
+
+    </div>
+
+
+    <!-- Mobile Menu -->
+    <button
+      id="mobile-menu-btn"
+      type="button"
+      class="
+        md:hidden
+        text-slate-300
+        hover:text-white
+        p-2
+      "
+      aria-label="Abrir menu"
+      aria-expanded="false"
+    >
+      <i
+        data-lucide="menu"
+        class="w-7 h-7"
+      ></i>
+    </button>
+
+  </div>
+
+
+  <!-- Mobile Dropdown -->
+  <div
+    id="mobile-menu"
+    class="
+      hidden
+      md:hidden
+      absolute
+      left-0
+      w-full
+      bg-dark/95
+      backdrop-blur-xl
+      border-b
+      border-slate-800
+    "
+  >
+
+    <div
+      class="
+        px-6
+        py-5
+        flex
+        flex-col
+        space-y-4
+      "
+    >
+
+      <a href="#home" class="mobile-link">
+        Início
+      </a>
+
+      <a href="#sobre" class="mobile-link">
+        Sobre
+      </a>
+
+      <a href="#skills" class="mobile-link">
+        Habilidades
+      </a>
+
+      <a href="#projetos" class="mobile-link">
+        Projetos
+      </a>
+
+    </div>
+
+  </div>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<header
+  id="home"
+  class="
+    min-h-screen
+    flex
+    items-center
+    justify-center
+    px-6
+    pt-20
+  "
+>
+
+  <div
+    class="
+      max-w-5xl
+      mx-auto
+      text-center
+    "
+  >
+
+    <div
+      class="
+        inline-flex
+        items-center
+        gap-2
+        mb-7
+        px-4
+        py-2
+        rounded-full
+        bg-slate-800/60
+        border
+        border-slate-700/80
+        text-xs
+        sm:text-sm
+        text-primary
+        font-medium
+        tracking-wide
+      "
+    >
+      <i
+        data-lucide="terminal"
+        class="w-4 h-4"
+      ></i>
+
+      Engenharia de Software & Dados
+    </div>
+
+
+    <h1
+      class="
+        text-4xl
+        sm:text-5xl
+        md:text-6xl
+        lg:text-7xl
+        font-extrabold
+        text-white
+        tracking-tight
+        mb-7
+        leading-[1.12]
+      "
+    >
+
+      Transformando problemas complexos
+
+      <br class="hidden sm:inline">
+
+      <span class="block sm:inline-block">
+
+        em
+
+        <span
+          id="typewriter"
+          class="gradient-text pr-1"
+        ></span>
+
+        <span
+          class="
+            cursor-blink
+            text-primary
+            -ml-1
+          "
+        >|</span>
+
+      </span>
+
+    </h1>
+
+
+    <p
+      class="
+        text-base
+        sm:text-lg
+        md:text-xl
+        text-slate-400
+        max-w-3xl
+        mx-auto
+        mb-9
+        leading-relaxed
+      "
+    >
+      Engenheiro de Software com atuação em sistemas corporativos,
+      engenharia de dados, APIs, automação, inteligência artificial,
+      integrações governamentais e processamento de grandes volumes de dados.
+    </p>
+
+
+    <div
+      class="
+        flex
+        flex-col
+        sm:flex-row
+        justify-center
+        items-center
+        gap-4
+      "
+    >
+
+      <a
+        href="#projetos"
+        class="
+          w-full
+          sm:w-auto
+          px-8
+          py-3.5
+          rounded-xl
+          bg-primary
+          text-white
+          font-semibold
+          hover:bg-blue-600
+          shadow-lg
+          shadow-blue-500/10
+          hover:shadow-blue-500/20
+          transition-all
+        "
+      >
+        Explorar projetos
+      </a>
+
+
+      <a
+        href="#sobre"
+        class="
+          w-full
+          sm:w-auto
+          px-8
+          py-3.5
+          rounded-xl
+          bg-slate-800/60
+          border
+          border-slate-700
+          text-slate-300
+          font-semibold
+          hover:bg-slate-800
+          hover:text-white
+          transition-all
+        "
+      >
+        Sobre mim
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================================================
+     SOBRE
+========================================================= -->
+
+<section
+  id="sobre"
+  class="
+    py-24
+    bg-slate-900/40
+    border-y
+    border-slate-800/50
+  "
+>
+
+  <div
+    class="
+      max-w-6xl
+      mx-auto
+      px-6
+      grid
+      md:grid-cols-2
+      gap-14
+      items-center
+    "
+  >
+
+    <!-- Terminal -->
+    <div
+      class="
+        rounded-2xl
+        bg-card
+        border
+        border-slate-800
+        shadow-2xl
+        overflow-hidden
+      "
+    >
+
+      <div
+        class="
+          h-10
+          px-4
+          flex
+          items-center
+          gap-2
+          bg-slate-900/60
+          border-b
+          border-slate-800
+        "
+      >
+
+        <span class="w-3 h-3 rounded-full bg-red-400"></span>
+        <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+        <span class="w-3 h-3 rounded-full bg-green-400"></span>
+
+        <span
+          class="
+            ml-2
+            text-[11px]
+            text-slate-500
+            font-mono
+          "
+        >
+          profile.json
+        </span>
+
+      </div>
+
+
+      <pre
+        class="
+          p-6
+          sm:p-8
+          text-xs
+          sm:text-sm
+          font-mono
+          overflow-x-auto
+          leading-7
+        "
+      ><code>{
+  <span class="text-purple-400">"nome"</span>: <span class="text-emerald-400">"Marcos"</span>,
+  <span class="text-purple-400">"cargo"</span>: <span class="text-emerald-400">"Engenheiro de Software"</span>,
+  <span class="text-purple-400">"areas"</span>: [
+    <span class="text-emerald-400">"Software Engineering"</span>,
+    <span class="text-emerald-400">"Data Engineering"</span>,
+    <span class="text-emerald-400">"APIs & Integrações"</span>,
+    <span class="text-emerald-400">"Inteligência Artificial"</span>
+  ],
+  <span class="text-purple-400">"stack"</span>: [
+    <span class="text-emerald-400">"Python"</span>,
+    <span class="text-emerald-400">"FastAPI"</span>,
+    <span class="text-emerald-400">"React"</span>,
+    <span class="text-emerald-400">"PostgreSQL"</span>
+  ]
+}</code></pre>
+
+    </div>
+
+
+    <!-- Texto -->
+    <div class="space-y-7">
+
+      <div>
+        <span
+          class="
+            text-primary
+            uppercase
+            tracking-[0.2em]
+            text-xs
+            font-semibold
+          "
+        >
+          Perfil profissional
+        </span>
+
+        <h2
+          class="
+            text-3xl
+            sm:text-4xl
+            font-bold
+            text-white
+            tracking-tight
+            mt-3
+          "
+        >
+          Engenharia aplicada a problemas reais
+        </h2>
+      </div>
+
+
+      <p
+        class="
+          text-slate-400
+          leading-relaxed
+          text-base
+        "
+      >
+        Desenvolvo soluções ponta a ponta envolvendo aplicações web,
+        APIs corporativas, pipelines de dados, sistemas de auditoria,
+        integrações fiscais e automação de processos.
+      </p>
+
+
+      <p
+        class="
+          text-slate-400
+          leading-relaxed
+          text-base
+        "
+      >
+        Minha atuação combina desenvolvimento de software,
+        infraestrutura, banco de dados e engenharia de dados,
+        especialmente em ambientes que exigem processamento
+        confiável, segurança, rastreabilidade e escalabilidade.
+      </p>
+
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          sm:grid-cols-3
+          gap-4
+          pt-2
+        "
+      >
+
+        <div class="profile-metric">
+          <i
+            data-lucide="code-2"
+            class="w-5 h-5 text-blue-400 mb-3"
+          ></i>
+
+          <h3
+            class="
+              text-lg
+              font-bold
+              text-white
+            "
+          >
+            Software
+          </h3>
+
+          <p
+            class="
+              text-xs
+              text-slate-500
+              mt-1
+            "
+          >
+            Sistemas corporativos
+          </p>
+        </div>
+
+
+        <div class="profile-metric">
+          <i
+            data-lucide="database"
+            class="w-5 h-5 text-emerald-400 mb-3"
+          ></i>
+
+          <h3
+            class="
+              text-lg
+              font-bold
+              text-white
+            "
+          >
+            Dados
+          </h3>
+
+          <p
+            class="
+              text-xs
+              text-slate-500
+              mt-1
+            "
+          >
+            Pipelines & analytics
+          </p>
+        </div>
+
+
+        <div class="profile-metric">
+          <i
+            data-lucide="brain-circuit"
+            class="w-5 h-5 text-purple-400 mb-3"
+          ></i>
+
+          <h3
+            class="
+              text-lg
+              font-bold
+              text-white
+            "
+          >
+            IA
+          </h3>
+
+          <p
+            class="
+              text-xs
+              text-slate-500
+              mt-1
+            "
+          >
+            Automação inteligente
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SKILLS
+========================================================= -->
+
+<section
+  id="skills"
+  class="
+    py-24
+    max-w-6xl
+    mx-auto
+    px-6
+  "
+>
+
+  <div
+    class="
+      text-center
+      max-w-3xl
+      mx-auto
+      mb-16
+    "
+  >
+
+    <span
+      class="
+        text-primary
+        uppercase
+        tracking-[0.2em]
+        text-xs
+        font-semibold
+      "
+    >
+      Tecnologias
+    </span>
+
+    <h2
+      class="
+        text-3xl
+        sm:text-4xl
+        font-bold
+        text-white
+        tracking-tight
+        mt-3
+        mb-4
+      "
+    >
+      Stack Tecnológica
+    </h2>
+
+    <p class="text-slate-400">
+      Tecnologias utilizadas no desenvolvimento de aplicações,
+      plataformas de dados, integrações e infraestrutura corporativa.
+    </p>
+
+  </div>
+
+
+  <div
+    class="
+      grid
+      grid-cols-1
+      sm:grid-cols-2
+      lg:grid-cols-4
+      gap-6
+    "
+  >
+
+    <!-- Software -->
+    <article class="skill-card">
+
+      <div class="skill-icon bg-blue-500/10 text-blue-400">
+        <i data-lucide="code-2"></i>
+      </div>
+
+      <h3 class="skill-title">
+        Engenharia de Software
+      </h3>
+
+      <p class="skill-description">
+        Python, FastAPI, Node.js, REST APIs, arquitetura limpa,
+        serviços corporativos e desenvolvimento orientado a domínio.
+      </p>
+
+    </article>
+
+
+    <!-- Data -->
+    <article class="skill-card">
+
+      <div class="skill-icon bg-emerald-500/10 text-emerald-400">
+        <i data-lucide="database"></i>
+      </div>
+
+      <h3 class="skill-title">
+        Engenharia de Dados
+      </h3>
+
+      <p class="skill-description">
+        PostgreSQL, Oracle, DuckDB, Parquet, PyArrow,
+        processamento em lote, Data Lake e modelagem analítica.
+      </p>
+
+    </article>
+
+
+    <!-- Front -->
+    <article class="skill-card">
+
+      <div class="skill-icon bg-purple-500/10 text-purple-400">
+        <i data-lucide="layout-dashboard"></i>
+      </div>
+
+      <h3 class="skill-title">
+        Aplicações Web
+      </h3>
+
+      <p class="skill-description">
+        React, Next.js, TypeScript, Vite, Tailwind CSS,
+        interfaces administrativas e sistemas responsivos.
+      </p>
+
+    </article>
+
+
+    <!-- Infra -->
+    <article class="skill-card">
+
+      <div class="skill-icon bg-orange-500/10 text-orange-400">
+        <i data-lucide="server-cog"></i>
+      </div>
+
+      <h3 class="skill-title">
+        DevOps & Infraestrutura
+      </h3>
+
+      <p class="skill-description">
+        Docker, Linux, Nginx, systemd, TLS, certificados digitais,
+        APIs seguras e ambientes de produção.
+      </p>
+
+    </article>
+
+
+    <!-- AI -->
+    <article class="skill-card">
+
+      <div class="skill-icon bg-fuchsia-500/10 text-fuchsia-400">
+        <i data-lucide="brain-circuit"></i>
+      </div>
+
+      <h3 class="skill-title">
+        Inteligência Artificial
+      </h3>
+
+      <p class="skill-description">
+        LLMs, RAG, embeddings, processamento de documentos,
+        APIs de IA e inferência local.
+      </p>
+
+    </article>
+
+
+    <!-- Integration -->
+    <article class="skill-card">
+
+      <div class="skill-icon bg-cyan-500/10 text-cyan-400">
+        <i data-lucide="waypoints"></i>
+      </div>
+
+      <h3 class="skill-title">
+        Integrações
+      </h3>
+
+      <p class="skill-description">
+        REST, XML, JSON, mTLS, ICP-Brasil,
+        sistemas governamentais e interoperabilidade.
+      </p>
+
+    </article>
+
+
+    <!-- Architecture -->
+    <article class="skill-card">
+
+      <div class="skill-icon bg-indigo-500/10 text-indigo-400">
+        <i data-lucide="network"></i>
+      </div>
+
+      <h3 class="skill-title">
+        Arquitetura
+      </h3>
+
+      <p class="skill-description">
+        APIs modulares, pipelines, separação de responsabilidades,
+        serviços distribuídos e observabilidade.
+      </p>
+
+    </article>
+
+
+    <!-- Fiscal -->
+    <article class="skill-card">
+
+      <div class="skill-icon bg-yellow-500/10 text-yellow-400">
+        <i data-lucide="file-search"></i>
+      </div>
+
+      <h3 class="skill-title">
+        Sistemas Fiscais
+      </h3>
+
+      <p class="skill-description">
+        NFS-e Nacional, DIMP, auditoria fiscal,
+        documentos eletrônicos e processamento estruturado.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJETOS
+========================================================= -->
+
+<section
+  id="projetos"
+  class="
+    py-24
+    bg-slate-900/40
+    border-y
+    border-slate-800/50
+  "
+>
+
+  <div
+    class="
+      max-w-6xl
+      mx-auto
+      px-6
+    "
+  >
+
+    <div
+      class="
+        text-center
+        max-w-3xl
+        mx-auto
+        mb-10
+      "
+    >
+
+      <span
+        class="
+          text-primary
+          uppercase
+          tracking-[0.2em]
+          text-xs
+          font-semibold
+        "
+      >
+        Cases técnicos
+      </span>
+
+      <h2
+        class="
+          text-3xl
+          sm:text-4xl
+          font-bold
+          text-white
+          tracking-tight
+          mt-3
+          mb-4
+        "
+      >
+        Projetos em Destaque
+      </h2>
+
+      <p class="text-slate-400 leading-relaxed">
+        Sistemas, plataformas de dados e integrações desenvolvidos
+        para resolver problemas reais de software, dados,
+        automação e infraestrutura.
+      </p>
+
+    </div>
+
+
+    <!-- Filters -->
+    <div
+      id="project-filters"
+      class="
+        flex
+        flex-wrap
+        justify-center
+        gap-2
+        mb-12
+      "
+    ></div>
+
+
+    <!-- Cards -->
+    <div
+      id="projects-grid"
+      class="
+        grid
+        grid-cols-1
+        md:grid-cols-2
+        lg:grid-cols-3
+        gap-7
+        items-stretch
+      "
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer
+  class="
+    bg-slate-950
+    py-10
+    border-t
+    border-slate-900
+  "
+>
+
+  <div
+    class="
+      max-w-6xl
+      mx-auto
+      px-6
+      flex
+      flex-col
+      sm:flex-row
+      justify-between
+      items-center
+      gap-4
+      text-sm
+    "
+  >
+
+    <p class="text-slate-600">
+      © 2026 MarcosTHE.dev
+    </p>
+
+    <p class="text-slate-700">
+      Engenharia de Software • Dados • IA
+    </p>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+  /* =========================================================
+     ESTILOS REUTILIZÁVEIS
+  ========================================================= */
+
+  document.querySelectorAll(".nav-link").forEach(element => {
+
+    element.className = `
+      text-sm
+      font-medium
+      text-slate-400
+      hover:text-white
+      transition-colors
+      rounded-lg
+      px-3
+      py-2
+    `;
+
+  });
+
+
+  document.querySelectorAll(".mobile-link").forEach(element => {
+
+    element.className = `
+      mobile-link
+      text-base
+      font-medium
+      text-slate-300
+      hover:text-white
+      py-1
+    `;
+
+  });
+
+
+  document.querySelectorAll(".profile-metric").forEach(element => {
+
+    element.className = `
+      profile-metric
+      p-5
+      rounded-xl
+      bg-slate-800/40
+      border
+      border-slate-800/80
+    `;
+
+  });
+
+
+  document.querySelectorAll(".skill-card").forEach(element => {
+
+    element.className = `
+      skill-card
+      p-6
+      bg-card
+      rounded-2xl
+      border
+      border-slate-800/80
+      hover:border-slate-700
+      hover:-translate-y-1
+      hover:shadow-xl
+      transition-all
+      duration-300
+    `;
+
+  });
+
+
+  document.querySelectorAll(".skill-icon").forEach(element => {
+
+    element.classList.add(
+      "w-12",
+      "h-12",
+      "rounded-xl",
+      "flex",
+      "items-center",
+      "justify-center",
+      "mb-5"
+    );
+
+  });
+
+
+  document.querySelectorAll(".skill-title").forEach(element => {
+
+    element.className = `
+      skill-title
+      text-lg
+      font-bold
+      text-white
+      mb-2
+    `;
+
+  });
+
+
+  document.querySelectorAll(".skill-description").forEach(element => {
+
+    element.className = `
+      skill-description
+      text-sm
+      text-slate-400
+      leading-relaxed
+    `;
+
+  });
+
+
+
+  /* =========================================================
+     DADOS DOS PROJETOS
+  ========================================================= */
+
+  const projects = [
+
+    {
+      title: "Plataforma de Inteligência NFS-e",
+      category: "Engenharia de Dados",
+
+      description:
+        "Plataforma para ingestão, processamento e análise de documentos fiscais provenientes do Ambiente de Dados Nacional, estruturando grandes volumes de NFS-e para consultas e auditoria.",
+
+      technologies: [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Parquet",
+        "DuckDB"
+      ],
+
+      icon: "database",
+
+      featured: true,
+      institutional: true
+    },
+
+
+    {
+      title: "Data Lake de Documentos Fiscais",
+      category: "Engenharia de Dados",
+
+      description:
+        "Arquitetura analítica baseada em arquivos colunares e particionamento para armazenamento histórico, processamento incremental e exploração eficiente de milhões de registros fiscais.",
+
+      technologies: [
+        "Python",
+        "PyArrow",
+        "Parquet",
+        "DuckDB",
+        "SQL"
+      ],
+
+      icon: "database-zap",
+
+      featured: true,
+      institutional: true
+    },
+
+
+    {
+      title: "Integração com a NFS-e Nacional",
+      category: "Integrações",
+
+      description:
+        "Serviço de integração com o Ambiente de Dados Nacional para distribuição incremental de documentos por NSU, processamento de eventos fiscais e sincronização automatizada.",
+
+      technologies: [
+        "Python",
+        "REST API",
+        "XML",
+        "mTLS",
+        "ICP-Brasil"
+      ],
+
+      icon: "waypoints",
+
+      featured: true,
+      institutional: true
+    },
+
+
+    {
+      title: "Plataforma de Auditoria DIMP",
+      category: "Auditoria Fiscal",
+
+      description:
+        "Sistema analítico para investigação de operações financeiras declaradas via DIMP, permitindo consultas por contribuinte, competência, transação, cancelamentos e conciliações.",
+
+      technologies: [
+        "Python",
+        "FastAPI",
+        "DuckDB",
+        "Parquet",
+        "HTMX"
+      ],
+
+      icon: "search-check",
+
+      featured: true,
+      institutional: true
+    },
+
+
+    {
+      title: "Motor de Conciliação DIMP",
+      category: "Auditoria Fiscal",
+
+      description:
+        "Motor de validação cruzada para identificar divergências, registros órfãos e inconsistências entre diferentes níveis do leiaute DIMP, mantendo rastreabilidade das análises.",
+
+      technologies: [
+        "Python",
+        "DuckDB",
+        "SQL",
+        "Parquet"
+      ],
+
+      icon: "git-compare-arrows",
+
+      institutional: true
+    },
+
+
+    {
+      title: "Implantação do Sistema SIMBA",
+      category: "Infraestrutura",
+
+      description:
+        "Implantação e integração de ambiente corporativo para investigação de movimentações bancárias, envolvendo aplicações Java, banco Oracle, TLS e certificados digitais.",
+
+      technologies: [
+        "Java",
+        "Tomcat",
+        "Oracle",
+        "Linux",
+        "TLS"
+      ],
+
+      icon: "shield-check",
+
+      featured: true,
+      institutional: true
+    },
+
+
+    {
+      title: "Carta de Serviços Digital",
+      category: "Governo Digital",
+
+      description:
+        "Plataforma web para publicação e gerenciamento de serviços públicos, com CMS próprio, acessibilidade digital e arquitetura desacoplada entre frontend e backend.",
+
+      technologies: [
+        "React",
+        "Vite",
+        "TypeScript",
+        "Node.js",
+        "Nginx"
+      ],
+
+      icon: "landmark",
+
+      institutional: true
+    },
+
+
+    {
+      title: "Portal Municipal de Serviços",
+      category: "Governo Digital",
+
+      description:
+        "Portal corporativo para gerenciamento de conteúdos, serviços, menus, banners e componentes institucionais reutilizáveis utilizando arquitetura web moderna.",
+
+      technologies: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL"
+      ],
+
+      icon: "panels-top-left",
+
+      institutional: true
+    },
+
+
+    {
+      title: "Plataforma Local de Inteligência Artificial",
+      category: "Inteligência Artificial",
+
+      description:
+        "Arquitetura para execução local de modelos de linguagem, embeddings, busca semântica e processamento inteligente de documentos preservando dados institucionais.",
+
+      technologies: [
+        "Python",
+        "LLMs",
+        "CUDA",
+        "RAG",
+        "Embeddings"
+      ],
+
+      icon: "brain-circuit",
+
+      featured: true,
+      institutional: true
+    },
+
+
+    {
+      title: "Reconhecimento Inteligente de Documentos",
+      category: "Inteligência Artificial",
+
+      description:
+        "Solução para reconhecimento, classificação e validação automatizada de documentos utilizando modelos de inteligência artificial integrados a serviços institucionais.",
+
+      technologies: [
+        "Python",
+        "FastAPI",
+        "LLM",
+        "OCR",
+        "Computer Vision"
+      ],
+
+      icon: "scan-text",
+
+      institutional: true
+    },
+
+
+    {
+      title: "Infraestrutura de Aplicações Corporativas",
+      category: "Infraestrutura",
+
+      description:
+        "Padronização de aplicações em Linux utilizando proxy reverso, gerenciamento de serviços, TLS e segregação entre ambientes de desenvolvimento, homologação e produção.",
+
+      technologies: [
+        "Oracle Linux",
+        "Nginx",
+        "Docker",
+        "systemd",
+        "TLS"
+      ],
+
+      icon: "server-cog",
+
+      institutional: true
+    },
+
+
+    {
+      title: "Gateway de Integrações Institucionais",
+      category: "Integrações",
+
+      description:
+        "Arquitetura para interoperabilidade entre sistemas legados, APIs modernas e serviços externos com autenticação, certificados digitais e rastreabilidade.",
+
+      technologies: [
+        "Python",
+        "FastAPI",
+        "REST",
+        "JSON",
+        "XML"
+      ],
+
+      icon: "network",
+
+      institutional: true
+    }
+
+  ];
+
+
+
+  /* =========================================================
+     CONFIGURAÇÃO VISUAL DAS CATEGORIAS
+  ========================================================= */
+
+  const categoryStyles = {
+
+    "Engenharia de Dados": {
+      text: "text-cyan-400",
+      bg: "bg-cyan-500/10",
+      border: "border-cyan-500/20"
+    },
+
+    "Auditoria Fiscal": {
+      text: "text-amber-400",
+      bg: "bg-amber-500/10",
+      border: "border-amber-500/20"
+    },
+
+    "Integrações": {
+      text: "text-emerald-400",
+      bg: "bg-emerald-500/10",
+      border: "border-emerald-500/20"
+    },
+
+    "Infraestrutura": {
+      text: "text-orange-400",
+      bg: "bg-orange-500/10",
+      border: "border-orange-500/20"
+    },
+
+    "Governo Digital": {
+      text: "text-blue-400",
+      bg: "bg-blue-500/10",
+      border: "border-blue-500/20"
+    },
+
+    "Inteligência Artificial": {
+      text: "text-purple-400",
+      bg: "bg-purple-500/10",
+      border: "border-purple-500/20"
+    }
+
+  };
+
+
+
+  /* =========================================================
+     TECHNOLOGY BADGES
+  ========================================================= */
+
+  const technologyStyle = `
+    text-[11px]
+    font-semibold
+    bg-slate-800/70
+    text-slate-300
+    border
+    border-slate-700/80
+    px-2.5
+    py-1
+    rounded-md
+  `;
+
+
+
+  /* =========================================================
+     CRIA CARD
+  ========================================================= */
+
+  function createProjectCard(project) {
+
+    const style =
+      categoryStyles[project.category] ??
+      {
+        text: "text-primary",
+        bg: "bg-primary/10",
+        border: "border-primary/20"
+      };
+
+
+    const technologies = project.technologies
+      .map(
+        tech => `
+          <span class="${technologyStyle}">
+            ${tech}
+          </span>
+        `
+      )
+      .join("");
+
+
+    return `
+      <article
+        class="
+          project-card
+          bg-card
+          rounded-2xl
+          border
+          border-slate-800
+          p-6
+          flex
+          flex-col
+          justify-between
+          hover:border-slate-700
+          hover:shadow-2xl
+          hover:-translate-y-1
+          transition-all
+          duration-300
+        "
+      >
+
+        <div class="relative z-10">
+
+          <div
+            class="
+              flex
+              items-start
+              justify-between
+              gap-4
+              mb-5
+            "
+          >
+
+            <div>
+
+              <span
+                class="
+                  text-[11px]
+                  font-semibold
+                  uppercase
+                  tracking-[0.13em]
+                  ${style.text}
+                "
+              >
+                ${project.category}
+              </span>
+
+            </div>
+
+
+            <div
+              class="
+                w-9
+                h-9
+                rounded-lg
+                ${style.bg}
+                ${style.text}
+                border
+                ${style.border}
+                flex
+                items-center
+                justify-center
+                shrink-0
+              "
+            >
+
+              <i
+                data-lucide="${project.icon}"
+                class="w-4 h-4"
+              ></i>
+
+            </div>
+
+          </div>
+
+
+          <h3
+            class="
+              text-xl
+              font-bold
+              text-white
+              leading-snug
+              mb-3
+            "
+          >
+            ${project.title}
+          </h3>
+
+
+          <p
+            class="
+              text-slate-400
+              text-sm
+              leading-relaxed
+              mb-6
+            "
+          >
+            ${project.description}
+          </p>
+
+        </div>
+
+
+        <div class="relative z-10">
+
+          <div
+            class="
+              flex
+              flex-wrap
+              gap-1.5
+              pt-4
+              border-t
+              border-slate-800/70
+            "
+          >
+            ${technologies}
+          </div>
+
+
+          ${
+            project.institutional
+              ? `
+                <div
+                  class="
+                    mt-4
+                    flex
+                    items-center
+                    gap-1.5
+                    text-[10px]
+                    text-slate-600
+                  "
+                >
+                  <i
+                    data-lucide="lock-keyhole"
+                    class="w-3 h-3"
+                  ></i>
+
+                  Projeto institucional
+                </div>
+              `
+              : ""
+          }
+
+        </div>
+
+      </article>
+    `;
+
+  }
+
+
+
+  /* =========================================================
+     RENDERIZA PROJETOS
+  ========================================================= */
+
+  function renderProjects(category = "Todos") {
+
+    const grid =
+      document.getElementById("projects-grid");
+
+
+    const filteredProjects =
+      category === "Todos"
+        ? projects
+        : projects.filter(
+            project =>
+              project.category === category
+          );
+
+
+    grid.innerHTML =
+      filteredProjects
+        .map(createProjectCard)
+        .join("");
+
+
+    lucide.createIcons();
+
+  }
+
+
+
+  /* =========================================================
+     FILTROS
+  ========================================================= */
+
+  function renderFilters() {
+
+    const container =
+      document.getElementById("project-filters");
+
+
+    const categories = [
+      "Todos",
+      ...new Set(
+        projects.map(
+          project => project.category
+        )
+      )
+    ];
+
+
+    container.innerHTML =
+      categories
+        .map(
+          (category, index) => `
+            <button
+              type="button"
+              data-category="${category}"
+              class="
+                filter-button
+                ${index === 0 ? "active" : ""}
+                px-4
+                py-2
+                rounded-lg
+                border
+                border-slate-800
+                bg-slate-800/30
+                text-xs
+                sm:text-sm
+                font-medium
+                text-slate-400
+                hover:text-white
+                hover:border-slate-700
+                transition-all
+              "
+            >
+              ${category}
+            </button>
+          `
+        )
+        .join("");
+
+
+    container
+      .querySelectorAll(".filter-button")
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            container
+              .querySelectorAll(".filter-button")
+              .forEach(item => {
+                item.classList.remove("active");
+              });
+
+
+            button.classList.add("active");
+
+
+            renderProjects(
+              button.dataset.category
+            );
+
+          }
+        );
+
+      });
+
+  }
+
+
+
+  /* =========================================================
+     MOBILE MENU
+  ========================================================= */
+
+  const menuBtn =
+    document.getElementById("mobile-menu-btn");
+
+  const mobileMenu =
+    document.getElementById("mobile-menu");
+
+
+  menuBtn.addEventListener(
+    "click",
+    () => {
+
+      const isHidden =
+        mobileMenu.classList.toggle("hidden");
+
+
+      menuBtn.setAttribute(
+        "aria-expanded",
+        String(!isHidden)
+      );
+
+    }
+  );
+
+
+  document
+    .querySelectorAll(".mobile-link")
+    .forEach(link => {
+
+      link.addEventListener(
+        "click",
+        () => {
+
+          mobileMenu.classList.add("hidden");
+
+          menuBtn.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+      );
+
+    });
+
+
+
+  /* =========================================================
+     NAVBAR ON SCROLL
+  ========================================================= */
+
+  const navbar =
+    document.getElementById("navbar");
+
+  const navbarContainer =
+    document.getElementById(
+      "navbar-container"
+    );
+
+
+  function updateNavbar() {
+
+    if (window.scrollY > 30) {
+
+      navbar.classList.add(
+        "bg-dark/85",
+        "backdrop-blur-xl",
+        "shadow-xl",
+        "border-b",
+        "border-slate-800/80"
+      );
+
+
+      navbarContainer.classList.remove(
+        "h-20"
+      );
+
+
+      navbarContainer.classList.add(
+        "h-16"
+      );
+
+    }
+
+    else {
+
+      navbar.classList.remove(
+        "bg-dark/85",
+        "backdrop-blur-xl",
+        "shadow-xl",
+        "border-b",
+        "border-slate-800/80"
+      );
+
+
+      navbarContainer.classList.remove(
+        "h-16"
+      );
+
+
+      navbarContainer.classList.add(
+        "h-20"
+      );
+
+    }
+
+  }
+
+
+  window.addEventListener(
+    "scroll",
+    updateNavbar,
+    {
+      passive: true
+    }
+  );
+
+
+
+  /* =========================================================
+     TYPEWRITER
+  ========================================================= */
+
+  const words = [
+    "software.",
+    "dados.",
+    "APIs.",
+    "automação.",
+    "inteligência."
+  ];
+
+
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+
+  function typeEffect() {
+
+    const element =
+      document.getElementById(
+        "typewriter"
+      );
+
+
+    if (!element) {
+      return;
+    }
+
+
+    const currentWord =
+      words[wordIndex];
+
+
+    if (!isDeleting) {
+
+      charIndex++;
+
+
+      element.textContent =
+        currentWord.substring(
+          0,
+          charIndex
+        );
+
+
+      if (
+        charIndex ===
+        currentWord.length
+      ) {
+
+        isDeleting = true;
+
+
+        setTimeout(
+          typeEffect,
+          1800
+        );
+
+
+        return;
+
+      }
+
+    }
+
+    else {
+
+      charIndex--;
+
+
+      element.textContent =
+        currentWord.substring(
+          0,
+          charIndex
+        );
+
+
+      if (charIndex === 0) {
+
+        isDeleting = false;
+
+
+        wordIndex =
+          (wordIndex + 1) %
+          words.length;
+
+
+        setTimeout(
+          typeEffect,
+          350
+        );
+
+
+        return;
+
+      }
+
+    }
+
+
+    setTimeout(
+      typeEffect,
+      isDeleting ? 45 : 85
+    );
+
+  }
+
+
+
+  /* =========================================================
+     INTERSECTION OBSERVER
+  ========================================================= */
+
+  const observer =
+    new IntersectionObserver(
+      entries => {
+
+        entries.forEach(entry => {
+
+          if (
+            entry.isIntersecting
+          ) {
+
+            entry.target.classList.add(
+              "fade-in-up"
+            );
+
+
+            observer.unobserve(
+              entry.target
+            );
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.08
+      }
+    );
+
+
+  document
+    .querySelectorAll("section")
+    .forEach(section => {
+
+      observer.observe(section);
+
+    });
+
+
+
+  /* =========================================================
+     INIT
+  ========================================================= */
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+      renderFilters();
+
+      renderProjects();
+
+      updateNavbar();
+
+      lucide.createIcons();
+
+      setTimeout(
+        typeEffect,
+        500
+      );
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
