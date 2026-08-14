@@ -1,372 +1,384 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>MarcosTHE | Engenheiro de Software</title>
-  <meta name="description" content="Portfólio de Marcos, Engenheiro de Software especializado em APIs, automação, IA e arquitetura escalável.">
+  <title>MarcosTHE.dev | Engenheiro de Software</title>
 
+  <meta name="description" content="Portfólio de MarcosTHE.dev — Engenharia de Software, Engenharia de Dados, APIs, Inteligência Artificial, sistemas fiscais e integrações corporativas.">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="MarcosTHE.dev | Engenheiro de Software">
+  <meta property="og:description" content="Engenheiro de Software com atuação em sistemas corporativos, engenharia de dados, APIs e Inteligência Artificial.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Tailwind CSS (CDN, mantendo tecnologia atual) -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2=family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"]
+          },
           colors: {
-            primary: '#3b82f6',
-            dark: '#0f172a',
-            card: '#1e293b'
+            primary: "#3b82f6",
+            dark: "#0f172a",
+            card: "#1e293b"
           }
         }
       }
-    }
+    };
   </script>
 
   <style>
-    body {
-      background-color: #0f172a;
-      background-image:
-        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.12), transparent 50%),
-        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.12), transparent 50%);
-      background-attachment: fixed;
-    }
+    /* Existing custom styles */
+    body { background-color: #0f172a; background-image: radial-gradient(at 0% 0%, rgba(59,130,246,0.12), transparent 50%), radial-gradient(at 100% 100%, rgba(139,92,246,0.12), transparent 50%); background-attachment: fixed; }
+    .gradient-text { background: linear-gradient(90deg, #3b82f6, #8b5cf6, #a855f7); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .fade-in-up { animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; transform: translateY(20px); }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    .cursor-blink { animation: blink 1s infinite; }
+    @keyframes blink { 0%,50%,100% { opacity: 1; } 25%,75% { opacity: 0; } }
+    .project-card { position: relative; overflow: hidden; }
+    .project-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(59,130,246,0.07), transparent 38%); pointer-events: none; }
+    .project-card:hover::before { background: radial-gradient(circle at top right, rgba(59,130,246,0.13), transparent 45%); }
+    .filter-button.active { color: #ffffff; background-color: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.4); }
 
-    .fade-in-up {
-      animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      opacity: 0;
-      transform: translateY(20px);
-    }
+    /* New utility classes for elements referenced in the markup but not defined */
+    .nav-link { @apply text-slate-300 hover:text-white px-3 py-2 rounded-md transition; }
+    .mobile-link { @apply block text-slate-200 hover:text-white; }
 
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .skill-card { @apply p-6 rounded-2xl bg-card border border-slate-800/60 shadow-md; }
+    .skill-icon { @apply w-12 h-12 rounded-lg flex items-center justify-center mb-4; }
+    .skill-title { @apply text-lg font-bold text-white mb-1; }
+    .skill-description { @apply text-sm text-slate-400; }
 
-    .gradient-text {
-      background: linear-gradient(90deg, #3b82f6, #a855f7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    
-    .cursor-blink {
-      animation: blink 1s infinite;
-    }
-    
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0; }
-    }
+    .profile-metric { @apply bg-transparent p-4 rounded-lg; }
+
+    /* Focus-visible for accessibility */
+    .focus-ring:focus { outline: none; box-shadow: 0 0 0 3px rgba(59,130,246,0.25); border-radius: 8px; }
+
+    /* Reduced motion respect already present; ensure transition for nav */
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+
+    /* Small helper for skip link */
+    .skip-link { position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip-link:focus { left: 1rem; top: 1rem; width: auto; height: auto; padding: 0.5rem 1rem; background: #111827; color: #fff; z-index: 60; border-radius: 6px; }
   </style>
 </head>
 
 <body class="text-slate-300 antialiased selection:bg-primary selection:text-white">
 
-<!-- NAVBAR -->
-<nav id="navbar" class="fixed w-full z-50 top-0 transition-all duration-300">
-  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-    <a href="#" class="text-xl font-bold text-white tracking-tight">MarcosTHE<span class="text-primary">.dev</span></a>
+  <a href="#main" class="skip-link">Pular para o conteúdo</a>
 
-    <div class="hidden md:flex items-center space-x-1">
-      <a href="#home" class="text-sm font-medium text-slate-400 hover:text-white transition-colors rounded-lg px-3 py-2">Início</a>
-      <a href="#sobre" class="text-sm font-medium text-slate-400 hover:text-white transition-colors rounded-lg px-3 py-2">Sobre</a>
-      <a href="#skills" class="text-sm font-medium text-slate-400 hover:text-white transition-colors rounded-lg px-3 py-2">Habilidades</a>
-      <a href="#projetos" class="text-sm font-medium text-slate-400 hover:text-white transition-colors rounded-lg px-3 py-2">Projetos</a>
+  <!-- NAVBAR -->
+  <nav id="navbar" class="fixed top-0 z-50 w-full transition-all duration-300">
+    <div id="navbar-container" class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between transition-all duration-300">
+      <a href="#home" class="text-xl sm:text-2xl font-bold text-white tracking-tight">MarcosTHE<span class="text-primary">.dev</span></a>
+
+      <div class="hidden md:flex items-center space-x-1" role="navigation" aria-label="Menu principal">
+        <a href="#home" class="nav-link">Início</a>
+        <a href="#sobre" class="nav-link">Sobre</a>
+        <a href="#skills" class="nav-link">Habilidades</a>
+        <a href="#projetos" class="nav-link">Projetos</a>
+      </div>
+
+      <button id="mobile-menu-btn" type="button" class="md:hidden text-slate-300 hover:text-white p-2 focus-ring" aria-label="Abrir menu" aria-expanded="false">
+        <i data-lucide="menu" class="w-7 h-7"></i>
+      </button>
     </div>
 
-    <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2" aria-label="Abrir menu">
-      <i data-lucide="menu" class="w-6 h-6"></i>
-    </button>
-  </div>
-
-  <!-- Mobile Menu Dropdown -->
-  <div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 bg-dark/95 backdrop-blur-lg border-b border-slate-800 transition-all">
-    <div class="px-6 py-4 flex flex-col space-y-3">
-      <a href="#home" class="mobile-link text-base font-medium text-slate-300 hover:text-white py-1">Início</a>
-      <a href="#sobre" class="mobile-link text-base font-medium text-slate-300 hover:text-white py-1">Sobre</a>
-      <a href="#skills" class="mobile-link text-base font-medium text-slate-300 hover:text-white py-1">Habilidades</a>
-      <a href="#projetos" class="mobile-link text-base font-medium text-slate-300 hover:text-white py-1">Projetos</a>
+    <div id="mobile-menu" class="hidden md:hidden absolute left-0 w-full bg-dark/95 backdrop-blur-xl border-b border-slate-800" aria-hidden="true">
+      <div class="px-6 py-5 flex flex-col space-y-4">
+        <a href="#home" class="mobile-link">Início</a>
+        <a href="#sobre" class="mobile-link">Sobre</a>
+        <a href="#skills" class="mobile-link">Habilidades</a>
+        <a href="#projetos" class="mobile-link">Projetos</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- HERO -->
-<header id="home" class="min-h-screen flex items-center justify-center px-6 pt-20">
-  <div class="max-w-4xl mx-auto text-center">
+  <!-- HERO -->
+  <main id="main">
+  <header id="home" class="min-h-screen flex items-center justify-center px-6 pt-20">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 mb-7 px-4 py-2 rounded-full bg-slate-800/60 border border-slate-700/80 text-xs sm:text-sm text-primary font-medium tracking-wide">
+        <i data-lucide="terminal" class="w-4 h-4"></i>
+        Engenharia de Software & Dados
+      </div>
 
-    <div class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-slate-800/60 border border-slate-700/80 text-xs sm:text-sm text-primary font-medium tracking-wide">
-      <span>👋 Bem-vindo ao meu portfólio</span>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-7 leading-[1.12]">
+        Transformando problemas complexos
+        <br class="hidden sm:inline">
+        <span class="block sm:inline-block">em
+          <span id="typewriter" class="gradient-text pr-1">sistemas confiáveis</span>
+          <span class="cursor-blink text-primary -ml-1">|</span>
+        </span>
+      </h1>
+
+      <p class="text-base sm:text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-9 leading-relaxed">Engenheiro de Software com atuação em sistemas corporativos, engenharia de dados, APIs, automação, inteligência artificial, integrações governamentais e processamento de grandes volumes de dados.</p>
+
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+        <a href="#projetos" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-primary text-white font-semibold hover:bg-blue-600 shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 transition-all">Explorar projetos</a>
+        <a href="#sobre" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-slate-800/60 border border-slate-700 text-slate-300 font-semibold hover:bg-slate-800 hover:text-white transition-all">Sobre mim</a>
+      </div>
     </div>
+  </header>
 
-    <!-- Container do Título com tamanho e leading otimizados para evitar quebras estranhas e distorções no Y -->
-    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6 leading-[1.15]">
-      Eu crio soluções com<br class="hidden sm:inline">
-      <span class="block sm:inline-block min-h-[1.2em] sm:min-h-0">
-        <span id="typewriter" class="gradient-text pr-1"></span>
-        <span class="cursor-blink text-primary -ml-1">|</span>
-      </span>
-    </h1>
-
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium mb-8">
-      <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-      Disponível para projetos e freelances
-    </div>
-
-    <p class="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-      Engenheiro de Software focado em arquiteturas robustas de APIs, automação inteligente e integrações com IA.
-    </p>
-
-    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-      <a href="#projetos" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-primary text-white font-semibold hover:bg-blue-600 shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 transition-all text-center">
-        Ver Projetos
-      </a>
-    </div>
-  </div>
-</header>
-
-<!-- SOBRE -->
-<section id="sobre" class="py-24 bg-slate-900/40 border-y border-slate-800/50">
-  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-
-    <!-- Mock do terminal / código ajustado para responsividade -->
-    <div class="bg-card p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-xl font-mono text-xs sm:text-sm text-blue-400 overflow-x-auto whitespace-pre">
-{
+  <!-- SOBRE -->
+  <section id="sobre" class="py-24 bg-slate-900/40 border-y border-slate-800/50">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
+      <div class="rounded-2xl bg-card border border-slate-800 shadow-2xl overflow-hidden">
+        <div class="h-10 px-4 flex items-center gap-2 bg-slate-900/60 border-b border-slate-800">
+          <span class="w-3 h-3 rounded-full bg-red-400"></span>
+          <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+          <span class="w-3 h-3 rounded-full bg-green-400"></span>
+          <span class="ml-2 text-[11px] text-slate-500 font-mono">profile.json</span>
+        </div>
+        <pre class="p-6 sm:p-8 text-xs sm:text-sm font-mono overflow-x-auto leading-7"><code>{
   <span class="text-purple-400">"nome"</span>: <span class="text-emerald-400">"Marcos"</span>,
   <span class="text-purple-400">"cargo"</span>: <span class="text-emerald-400">"Engenheiro de Software"</span>,
-  <span class="text-purple-400">"especialidades"</span>: [<span class="text-emerald-400">"FastAPI"</span>, <span class="text-emerald-400">"React"</span>, <span class="text-emerald-400">"IA"</span>],
-  <span class="text-purple-400">"foco"</span>: <span class="text-emerald-400">"Automação & APIs Escaláveis"</span>
-}</div>
+  <span class="text-purple-400">"areas"</span>: [
+    <span class="text-emerald-400">"Software Engineering"</span>,
+    <span class="text-emerald-400">"Data Engineering"</span>,
+    <span class="text-emerald-400">"APIs & Integrações"</span>,
+    <span class="text-emerald-400">"Inteligência Artificial"</span>
+  ],
+  <span class="text-purple-400">"stack"</span>: [
+    <span class="text-emerald-400">"Python"</span>,
+    <span class="text-emerald-400">"FastAPI"</span>,
+    <span class="text-emerald-400">"React"</span>,
+    <span class="text-emerald-400">"PostgreSQL"</span>
+  ]
+}</code></pre>
+      </div>
 
-    <div class="space-y-6">
-      <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Sobre Mim</h2>
-      <p class="text-slate-400 leading-relaxed text-base">
-        Desenvolvedor com foco em simplificar processos complexos. Desenvolvo sistemas ponta a ponta estruturando arquiteturas limpas no ecossistema Python (FastAPI), Node.js e interfaces modernas em React.
-      </p>
-
-      <div class="grid grid-cols-2 gap-4 pt-2">
-        <div class="p-5 rounded-xl bg-slate-800/40 border border-slate-800/80 backdrop-blur-sm">
-          <h3 class="text-3xl font-bold text-white mb-1">3+</h3>
-          <p class="text-xs sm:text-sm text-slate-400 font-medium">Anos de experiência</p>
+      <div class="space-y-7">
+        <div>
+          <span class="text-primary uppercase tracking-[0.2em] text-xs font-semibold">Perfil profissional</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-3">Engenharia aplicada a problemas reais</h2>
         </div>
-        <div class="p-5 rounded-xl bg-slate-800/40 border border-slate-800/80 backdrop-blur-sm">
-          <h3 class="text-3xl font-bold text-white mb-1">20+</h3>
-          <p class="text-xs sm:text-sm text-slate-400 font-medium">Projetos implantados</p>
+        <p class="text-slate-400 leading-relaxed text-base">Desenvolvo soluções ponta a ponta envolvendo aplicações web, APIs corporativas, pipelines de dados, sistemas de auditoria, integrações fiscais e automação de processos.</p>
+        <p class="text-slate-400 leading-relaxed text-base">Minha atuação combina desenvolvimento de software, infraestrutura, banco de dados e engenharia de dados, especialmente em ambientes que exigem processamento confiável, segurança, rastreabilidade e escalabilidade.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          <div class="profile-metric">
+            <i data-lucide="code-2" class="w-5 h-5 text-blue-400 mb-3"></i>
+            <h3 class="text-lg font-bold text-white">Software</h3>
+            <p class="text-xs text-slate-500 mt-1">Sistemas corporativos</p>
+          </div>
+          <div class="profile-metric">
+            <i data-lucide="database" class="w-5 h-5 text-emerald-400 mb-3"></i>
+            <h3 class="text-lg font-bold text-white">Dados</h3>
+            <p class="text-xs text-slate-500 mt-1">Pipelines & analytics</p>
+          </div>
+          <div class="profile-metric">
+            <i data-lucide="brain-circuit" class="w-5 h-5 text-purple-400 mb-3"></i>
+            <h3 class="text-lg font-bold text-white">IA</h3>
+            <p class="text-xs text-slate-500 mt-1">Automação inteligente</p>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="py-24 max-w-6xl mx-auto px-6">
-  <div class="text-center max-w-3xl mx-auto mb-16">
-    <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-4">Stack Tecnológica</h2>
-    <p class="text-slate-400 text-sm sm:text-base">As ferramentas e linguagens que domino para construir aplicações de alta performance.</p>
-  </div>
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-    <div class="p-6 bg-card rounded-2xl border border-slate-800/80 hover:border-primary/40 transition-all group">
-      <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4 text-primary group-hover:scale-110 transition-transform">
-        <i data-lucide="code-2" class="w-6 h-6"></i>
-      </div>
-      <h3 class="text-lg font-bold text-white mb-2">Front-end</h3>
-      <p class="text-sm text-slate-400">React, Next.js, Tailwind CSS, TypeScript, componentização e performance.</p>
-    </div>
-
-    <div class="p-6 bg-card rounded-2xl border border-slate-800/80 hover:border-purple-500/40 transition-all group">
-      <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4 text-purple-500 group-hover:scale-110 transition-transform">
-        <i data-lucide="server" class="w-6 h-6"></i>
-      </div>
-      <h3 class="text-lg font-bold text-white mb-2">Back-end</h3>
-      <p class="text-sm text-slate-400">Python (FastAPI), Node.js (Express), RESTful APIs, Arquitetura Limpa.</p>
-    </div>
-
-    <div class="p-6 bg-card rounded-2xl border border-slate-800/80 hover:border-green-500/40 transition-all group">
-      <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center mb-4 text-green-500 group-hover:scale-110 transition-transform">
-        <i data-lucide="database" class="w-6 h-6"></i>
-      </div>
-      <h3 class="text-lg font-bold text-white mb-2">Dados e Bancos</h3>
-      <p class="text-sm text-slate-400">PostgreSQL, MySQL, Oracle SQL, modelagem de dados e queries otimizadas.</p>
-    </div>
-
-    <div class="p-6 bg-card rounded-2xl border border-slate-800/80 hover:border-orange-500/40 transition-all group">
-      <div class="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4 text-orange-500 group-hover:scale-110 transition-transform">
-        <i data-lucide="cpu" class="w-6 h-6"></i>
-      </div>
-      <h3 class="text-lg font-bold text-white mb-2">DevOps & IA</h3>
-      <p class="text-sm text-slate-400">Docker, n8n, Integrações de Modelos LLM (OpenAI), Webhooks e LocalStack.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PROJETOS -->
-<section id="projetos" class="py-24 bg-slate-900/40 border-y border-slate-800/50">
-  <div class="max-w-6xl mx-auto px-6">
+  <!-- SKILLS -->
+  <section id="skills" class="py-24 max-w-6xl mx-auto px-6">
     <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-4">Projetos em Destaque</h2>
-      <p class="text-slate-400 text-sm sm:text-base">Aplicações reais desenvolvidas com foco em usabilidade, automação e escalabilidade.</p>
+      <span class="text-primary uppercase tracking-[0.2em] text-xs font-semibold">Tecnologias</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-3 mb-4">Stack Tecnológica</h2>
+      <p class="text-slate-400">Tecnologias utilizadas no desenvolvimento de aplicações, plataformas de dados, integrações e infraestrutura corporativa.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <article class="skill-card">
+        <div class="skill-icon bg-blue-500/10 text-blue-400"><i data-lucide="code-2"></i></div>
+        <h3 class="skill-title">Engenharia de Software</h3>
+        <p class="skill-description">Python, FastAPI, Node.js, REST APIs, arquitetura limpa, serviços corporativos e desenvolvimento orientado a domínio.</p>
+      </article>
 
-      <!-- Card 1 (Foco em Web/Front) -->
-      <div class="bg-card rounded-2xl border border-slate-800 p-6 flex flex-col justify-between hover:border-slate-700 hover:shadow-2xl hover:-translate-y-1 transition-all">
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-semibold text-blue-400 uppercase tracking-wider">Web App</span>
-            <i data-lucide="external-link" class="w-4 h-4 text-slate-500"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-2">Plataforma SaaS</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">Sistema corporativo completo com painéis estatísticos e gerenciamento de dados complexos em tempo real.</p>
-        </div>
-        <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-800/60">
-          <span class="text-[11px] font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-2.5 py-1 rounded-md">React</span>
-          <span class="text-[11px] font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2.5 py-1 rounded-md">TypeScript</span>
-          <span class="text-[11px] font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-1 rounded-md">Tailwind</span>
-        </div>
-      </div>
+      <article class="skill-card">
+        <div class="skill-icon bg-emerald-500/10 text-emerald-400"><i data-lucide="database"></i></div>
+        <h3 class="skill-title">Engenharia de Dados</h3>
+        <p class="skill-description">PostgreSQL, Oracle, DuckDB, Parquet, PyArrow, processamento em lote, Data Lake e modelagem analítica.</p>
+      </article>
 
-      <!-- Card 2 (Foco em Python / IA / Automação) -->
-      <div class="bg-card rounded-2xl border border-slate-800 p-6 flex flex-col justify-between hover:border-slate-700 hover:shadow-2xl hover:-translate-y-1 transition-all">
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-semibold text-purple-400 uppercase tracking-wider">Inteligência Artificial</span>
-            <i data-lucide="external-link" class="w-4 h-4 text-slate-500"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-2">Agente Inteligente de Atendimento</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">Automação inteligente de triagem de tickets e suporte contextual integrado com APIs da OpenAI.</p>
-        </div>
-        <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-800/60">
-          <span class="text-[11px] font-semibold bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 px-2.5 py-1 rounded-md">Python</span>
-          <span class="text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-md">FastAPI</span>
-          <span class="text-[11px] font-semibold bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/20 px-2.5 py-1 rounded-md">OpenAI API</span>
-        </div>
-      </div>
+      <article class="skill-card">
+        <div class="skill-icon bg-purple-500/10 text-purple-400"><i data-lucide="layout-dashboard"></i></div>
+        <h3 class="skill-title">Aplicações Web</h3>
+        <p class="skill-description">React, Next.js, TypeScript, Vite, Tailwind CSS, interfaces administrativas e sistemas responsivos.</p>
+      </article>
 
-      <!-- Card 3 (Foco em Integrações / Infra / Bancos) -->
-      <div class="bg-card rounded-2xl border border-slate-800 p-6 flex flex-col justify-between hover:border-slate-700 hover:shadow-2xl hover:-translate-y-1 transition-all">
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">DevOps / Integrações</span>
-            <i data-lucide="external-link" class="w-4 h-4 text-slate-500"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-2">Portal de Integração de Serviços</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">Modernização de API legada com controle de buffers de mensagens e barramento robusto de dados.</p>
-        </div>
-        <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-800/60">
-          <span class="text-[11px] font-semibold bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2.5 py-1 rounded-md">n8n</span>
-          <span class="text-[11px] font-semibold bg-blue-600/10 text-blue-400 border border-blue-500/20 px-2.5 py-1 rounded-md">Docker</span>
-          <span class="text-[11px] font-semibold bg-red-500/10 text-red-400 border border-red-500/20 px-2.5 py-1 rounded-md">Oracle DB</span>
-        </div>
-      </div>
+      <article class="skill-card">
+        <div class="skill-icon bg-orange-500/10 text-orange-400"><i data-lucide="server-cog"></i></div>
+        <h3 class="skill-title">DevOps & Infraestrutura</h3>
+        <p class="skill-description">Docker, Linux, Nginx, systemd, TLS, certificados digitais, APIs seguras e ambientes de produção.</p>
+      </article>
 
+      <article class="skill-card">
+        <div class="skill-icon bg-fuchsia-500/10 text-fuchsia-400"><i data-lucide="brain-circuit"></i></div>
+        <h3 class="skill-title">Inteligência Artificial</h3>
+        <p class="skill-description">LLMs, RAG, embeddings, processamento de documentos, APIs de IA e inferência local.</p>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon bg-cyan-500/10 text-cyan-400"><i data-lucide="waypoints"></i></div>
+        <h3 class="skill-title">Integrações</h3>
+        <p class="skill-description">REST, XML, JSON, mTLS, ICP-Brasil, sistemas governamentais e interoperabilidade.</p>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon bg-indigo-500/10 text-indigo-400"><i data-lucide="network"></i></div>
+        <h3 class="skill-title">Arquitetura</h3>
+        <p class="skill-description">APIs modulares, pipelines, separação de responsabilidades, serviços distribuídos e observabilidade.</p>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon bg-yellow-500/10 text-yellow-400"><i data-lucide="file-search"></i></div>
+        <h3 class="skill-title">Sistemas Fiscais</h3>
+        <p class="skill-description">NFS-e Nacional, DIMP, auditoria fiscal, documentos eletrônicos e processamento estruturado.</p>
+      </article>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer class="bg-slate-950 py-8 border-t border-slate-900 text-center text-sm">
-  <p class="text-slate-600">© 2026 MarcosTHE. Desenvolvido com foco e performance ☕</p>
-</footer>
+  <!-- PROJETOS (exemplo compacto) -->
+  <section id="projetos" class="py-24 bg-slate-900/40 border-y border-slate-800/50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-white">Projetos</h2>
+        <div class="space-x-2">
+          <button class="filter-button px-3 py-1 rounded-md text-sm border">Todos</button>
+          <button class="filter-button px-3 py-1 rounded-md text-sm border">Open Source</button>
+        </div>
+      </div>
 
-<script>
-  // Inicialização de Ícones
-  document.addEventListener("DOMContentLoaded", () => {
-    // Inicializa os ícones com segurança
-    lucide.createIcons();
-  });
-  
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="project-card p-6 rounded-2xl bg-card border border-slate-800">
+          <h3 class="text-lg font-semibold text-white">Projeto Exemplo</h3>
+          <p class="text-slate-400 text-sm mt-2">Descrição curta do projeto.</p>
+          <div class="mt-4 flex gap-2">
+            <a href="#" class="text-primary text-sm">Ver</a>
+            <a href="#" class="text-slate-300 text-sm">Código</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-  // Menu Mobile Interativo (Consertado bug de fechar ao clicar)
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
+  <!-- FOOTER -->
+  <footer class="py-12">
+    <div class="max-w-6xl mx-auto px-6 text-center text-slate-400">© MarcosTHE.dev — Todos os direitos reservados</div>
+  </footer>
 
-  document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
-    });
-  });
+  </main>
 
-  // Efeito de Scroll na Navbar (padding dinâmico de h-20 para h-16)
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
-      navbar.classList.add('bg-dark/85', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-slate-800/80', 'h-16');
-      navbar.classList.remove('h-20');
-    } else {
-      navbar.classList.remove('bg-dark/85', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-slate-800/80', 'h-16');
-      navbar.classList.add('h-20');
-    }
-  });
-
-  // Efeito Typewriter Refatorado (Sem saltos verticais)
-  const words = [
-    "Tecnologia.",
-    "Inovação.",
-    "Código Limpo.",
-    "Inteligência Artificial."
-  ];
-  
-  let wordIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  
-  function typeEffect() {
-    const el = document.getElementById("typewriter");
-    if (!el) return;
-  
-    const currentWord = words[wordIndex];
-    
-    if (!isDeleting) {
-      el.textContent = currentWord.substring(0, charIndex + 1);
-      charIndex++;
-  
-      if (charIndex === currentWord.length) {
-        isDeleting = true;
-        setTimeout(typeEffect, 2200);
-        return;
-      }
-    } else {
-      charIndex--;
-    
-      if (charIndex < 0) {
-        isDeleting = false;
-        charIndex = 0;
-        wordIndex = (wordIndex + 1) % words.length;
-        setTimeout(typeEffect, 400);
-        return;
-      }
-    
-      el.textContent = currentWord.substring(0, charIndex);
-    }
-  
-    const speed = isDeleting ? 40 : 80;
-    setTimeout(typeEffect, speed);
-  }
-  
-  setTimeout(typeEffect, 400);
-
-  // Intersection Observer suave para as seções
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('fade-in-up');
+  <!-- SCRIPTS: manter tecnologias atuais e adicionar interações acessíveis -->
+  <script>
+    // Initialize Lucide icons safely
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.lucide && typeof lucide.createIcons === 'function') {
+        lucide.createIcons();
+      } else if (window.lucide && typeof lucide.replace === 'function') {
+        lucide.replace();
       }
     });
-  }, { threshold: 0.08 });
 
-  document.querySelectorAll('section').forEach(sec => observer.observe(sec));
-</script>
+    // Typewriter effect
+    (function () {
+      const el = document.getElementById('typewriter');
+      if (!el) return;
+      const words = ['sistemas confiáveis', 'pipelines de dados', 'APIs escaláveis', 'automação inteligente'];
+      let i = 0;
+      let char = 0;
+      let forward = true;
+      const typeSpeed = 40;
+      const pauseBetween = 1200;
+
+      function tick() {
+        const current = words[i % words.length];
+        if (forward) {
+          el.textContent = current.slice(0, ++char);
+          if (char === current.length) { forward = false; setTimeout(tick, pauseBetween); return; }
+        } else {
+          el.textContent = current.slice(0, --char);
+          if (char === 0) { forward = true; i++; }
+        }
+        setTimeout(tick, typeSpeed);
+      }
+      tick();
+    })();
+
+    // Mobile menu toggle + accessibility
+    (function () {
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      if (!btn || !menu) return;
+
+      function openMenu() {
+        btn.setAttribute('aria-expanded', 'true');
+        menu.classList.remove('hidden');
+        menu.setAttribute('aria-hidden', 'false');
+        document.documentElement.classList.add('overflow-hidden');
+      }
+      function closeMenu() {
+        btn.setAttribute('aria-expanded', 'false');
+        menu.classList.add('hidden');
+        menu.setAttribute('aria-hidden', 'true');
+        document.documentElement.classList.remove('overflow-hidden');
+      }
+
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        if (expanded) closeMenu(); else openMenu();
+      });
+
+      // Close when clicking links
+      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => closeMenu()));
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    })();
+
+    // Simple scroll spy to highlight nav links
+    (function () {
+      const sections = document.querySelectorAll('section[id], header[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+      if (!sections.length || !navLinks.length) return;
+
+      function onScroll() {
+        const scrollPos = window.scrollY + 120;
+        let activeId = '';
+        sections.forEach(sec => {
+          if (sec.offsetTop <= scrollPos && (sec.offsetTop + sec.offsetHeight) > scrollPos) { activeId = sec.id; }
+        });
+        navLinks.forEach(a => {
+          const href = a.getAttribute('href') || '';
+          if (href === `#${activeId}`) { a.classList.add('text-white', 'font-semibold'); } else { a.classList.remove('text-white', 'font-semibold'); }
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // Ensure focus styles for in-page links (keyboard)
+    (function () {
+      const links = document.querySelectorAll('a');
+      links.forEach(l => l.addEventListener('keydown', (e) => { if (e.key === 'Enter') l.classList.add('focus-ring'); }));
+    })();
+  </script>
 
 </body>
 </html>
